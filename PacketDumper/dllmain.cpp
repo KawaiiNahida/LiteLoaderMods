@@ -306,7 +306,8 @@ TClasslessInstanceHook(
 			return original(this, id, pkt, data);
 		}
 	}
-	std::cout << "[Network][O][" << pkttime << "]\tLength:" << data.length() << "\tPktID:" << pktid << "[" << pkt.getName() << "]\tHash:" << pkthash << "\n";
+	//std::cout << "[Network][O][" << pkttime << "]\tLength:" << data.length() << "\tPktID:" << pktid << "[" << pkt.getName() << "]\tHash:" << pkthash << "\n";
+	logger.info("[Network][O][{}]\tLength:{}\tPkt:{}({})", pkttime, data.length(), pkt.getName(), pkt.getId());
 	EnterCriticalSection(&outp);
 	std::ofstream out("NetworkPacket.txt", std::ios::out | std::ios::app);
 	out << "[Network][O][" << pkttime << "]\tLength:" << data.length() << "\tPktID:" << pktid << "[" << pkt.getName() << "]\tHash:" << pkthash << "\n";
