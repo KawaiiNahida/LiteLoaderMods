@@ -36,6 +36,8 @@
 #include <GlobalServiceAPI.h>
 
 Logger logger("PktDumper");
+
+
 class EasyPkt : public Packet {
 public:
 	string_view view;
@@ -248,7 +250,7 @@ THook(void**,
 
 TInstanceHook(
 	NetworkPeer::DataStatus,
-	"?receivePacket@Connection@NetworkHandler@@QEAA?AW4DataStatus@NetworkPeer@@AEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV?$shared_ptr@V?$time_point@Usteady_clock@chrono@std@@V?$duration@_JU?$ratio@$00$0DLJKMKAA@@std@@@23@@chrono@std@@@6@@Z",
+	"?receivePacket@Connection@NetworkHandler@@QEAA?AW4DataStatus@NetworkPeer@@AEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEAV2@AEBV?$shared_ptr@V?$time_point@Usteady_clock@chrono@std@@V?$duration@_JU?$ratio@$00$0DLJKMKAA@@std@@@23@@chrono@std@@@6@@Z",
 	NetworkHandler::Connection, std::string& data) {
 	auto status = original(this, data);
 
@@ -264,11 +266,11 @@ TInstanceHook(
 		auto pktname = pkt->getName().c_str();
 		if (InPakcetHandler != nullptr) {
 			auto externReturn = InPakcetHandler(data.c_str(), data.length(), pktid, pktname, ((NetworkIdentifier*)this)->getHash());
-			if (externReturn.size == -1) {
+			/*if (externReturn.size == -1) {
 				return status;
-			}
+			}*/
 		}
-		logger.debug("[Network][I][{}]\tLength:{}\tPkt:{}({})", pkttime, data.length(), pkt->getName(), pkt->getId());//std::cout << "[Network][I][" << pkttime << "]\tLength:" << data.length() << "\tPktID:" << pktid << "[" << pktname << "]\tHash:" << pkthash << "\n";
+		//logger.debug("[Network][I][{}]\tLength:{}\tPkt:{}({})", pkttime, data.length(), pkt->getName(), pkt->getId());//std::cout << "[Network][I][" << pkttime << "]\tLength:" << data.length() << "\tPktID:" << pktid << "[" << pktname << "]\tHash:" << pkthash << "\n";
 		//hexDumper(ss, data);
 		EnterCriticalSection(&outp);
 		std::ofstream out("NetworkPacket.txt", std::ios::out | std::ios::app);
@@ -298,16 +300,16 @@ TClasslessInstanceHook(
 	auto pkttime = _time64(0);
 	if (OutPakcetHandler != nullptr) {
 		auto externReturn = OutPakcetHandler(data.c_str(), data.length(), pktid, pkt.getName().c_str(), id.getHash());
-		if (externReturn.size >= 0) {
+		/*if (externReturn.size >= 0) {
 			data = externReturn.pkt;
 			return original(this, id, pkt, data);
 		}
 		if (externReturn.size == -1) {
 			return original(this, id, pkt, data);
-		}
+		}*/
 	}
 	//std::cout << "[Network][O][" << pkttime << "]\tLength:" << data.length() << "\tPktID:" << pktid << "[" << pkt.getName() << "]\tHash:" << pkthash << "\n";
-	logger.info("[Network][O][{}]\tLength:{}\tPkt:{}({})", pkttime, data.length(), pkt.getName(), pkt.getId());
+	//logger.info("[Network][O][{}]\tLength:{}\tPkt:{}({})", pkttime, data.length(), pkt.getName(), pkt.getId());
 	EnterCriticalSection(&outp);
 	std::ofstream out("NetworkPacket.txt", std::ios::out | std::ios::app);
 	out << "[Network][O][" << pkttime << "]\tLength:" << data.length() << "\tPktID:" << pktid << "[" << pkt.getName() << "]\tHash:" << pkthash << "\n";
