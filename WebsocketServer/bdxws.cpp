@@ -79,7 +79,7 @@ namespace GolangBridge {
 		func::FnGlobalSend = (GlobalSend)MemoryGetProcAddress(memoryDll, "GlobalSend");
 		func::FnGlobalClosed = (GlobalClosed)MemoryGetProcAddress(memoryDll, "GlobalClosed");
 		func::FnGlobalBroadcast = (GlobalBroadcast)MemoryGetProcAddress(memoryDll, "GlobalBroadcast");
-		
+
 		//cout << "---------------Init Golang Bridge---------------" << endl
 		//	<< "[GoBridge]" << "Init\t\t\t" << func::FnGolangWSInit << endl
 		//	<< "[GoBridge]" << "setMessageHandler\t" << func::FnSetMsgHandler << endl
@@ -152,7 +152,7 @@ void loadconf() {
 
 		if (wsconfig["encrypt"].is_string()) {
 			config::encrypt_mode_str = wsconfig["encrypt"];
-			std::transform(config::encrypt_mode_str.begin(), config::encrypt_mode_str.end(),config::encrypt_mode_str.begin(), ::tolower);
+			std::transform(config::encrypt_mode_str.begin(), config::encrypt_mode_str.end(), config::encrypt_mode_str.begin(), ::tolower);
 			if (config::encrypt_mode_str == "null" || config::encrypt_mode_str == "none") {
 				config::encrypt_mode = config::encrypt_type::none;
 				logger.warn("Config", "You're running in unsafe, everyone may execute command without permission");
@@ -427,10 +427,8 @@ namespace ClientMsgHandle {
 		}
 		if (!cmd_request.is_null() && cmd_request["cmd"].is_string()) {
 			string cmd(cmd_request["cmd"]);
-			std::cout << cmd << std::endl;
 			BraceRemove(cmd);
-			std::cout << cmd << std::endl;
-			logger.info("Running cmd > {}" , cmd);
+			logger.info("Running cmd > {}", cmd);
 			ret = Level::runcmdEx(string(cmd_request["cmd"])).second;
 		}
 		else
@@ -481,7 +479,7 @@ namespace ClientMsgHandle {
 		}
 
 		if (!tellraw_request.is_null() && tellraw_request["text"].is_string()) {
-			logger.info("SendingText > {}" , string(tellraw_request["text"]));
+			logger.info("SendingText > {}", string(tellraw_request["text"]));
 		}
 		else
 			throw "JsonParseError [params][text] Not Found or Not a String";
@@ -561,7 +559,7 @@ void WsMsgHandler(__int64 connection, char* msg) {
 						if (in_json["params"].is_object()) {
 							//handle switch(action) 
 							if (in_json["params"]["mode"].is_string()) {
-								if ((in_json["params"]["mode"] == "aes_cbc_pck7padding" && config::encrypt_mode == 1)&&(in_json["params"]["mode"] == "aes_cbc_pck7spadding" && config::encrypt_mode == 2)) {
+								if ((in_json["params"]["mode"] == "aes_cbc_pck7padding" && config::encrypt_mode == 1) || (in_json["params"]["mode"] == "aes_cbc_pkcs7padding" && config::encrypt_mode == 2)) {
 
 									if (in_json["params"]["raw"].is_string()) {
 										string str = base64_aes_cbc_decrypt(in_json["params"]["raw"], (unsigned char*)config::wspasswdbase.substr(0, 16).c_str(), (unsigned char*)config::wspasswdbase.substr(16, 16).c_str());
