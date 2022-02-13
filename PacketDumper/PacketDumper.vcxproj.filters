@@ -20,16 +20,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\Shared\Lib\bedrock_server_api.lib">
+    <Library Include="..\SDK\Lib\bedrock_server_api.lib">
       <Filter>Res</Filter>
     </Library>
-    <Library Include="..\Shared\Lib\bedrock_server_var.lib">
+    <Library Include="..\SDK\Lib\bedrock_server_var.lib">
       <Filter>Res</Filter>
     </Library>
-    <Library Include="..\Shared\Lib\LiteLoader.lib">
+    <Library Include="..\SDK\Lib\LiteLoader.lib">
       <Filter>Res</Filter>
     </Library>
-    <Library Include="..\Shared\Lib\SymDBHelper.lib">
+    <Library Include="..\SDK\Lib\SymDBHelper.lib">
       <Filter>Res</Filter>
     </Library>
   </ItemGroup>

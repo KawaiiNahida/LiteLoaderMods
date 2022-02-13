@@ -22,10 +22,10 @@
     <ClCompile Include="dllmain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\Shared\Lib\bedrock_server_api.lib" />
-    <Library Include="..\Shared\Lib\bedrock_server_var.lib" />
-    <Library Include="..\Shared\Lib\LiteLoader.lib" />
-    <Library Include="..\Shared\Lib\SymDBHelper.lib" />
+    <Library Include="..\SDK\Lib\bedrock_server_api.lib" />
+    <Library Include="..\SDK\Lib\bedrock_server_var.lib" />
+    <Library Include="..\SDK\Lib\LiteLoader.lib" />
+    <Library Include="..\SDK\Lib\SymDBHelper.lib" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -91,7 +91,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)Shared\Header;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(SolutionDir)SDK\Header\third-party;$(SolutionDir)SDK\Header;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
