@@ -3,16 +3,14 @@ project(LLMods)
 
 set(CMAKE_CXX_STANDARD 17)
 
-include_directories(Shared/Header)
-include_directories(Shared/Lib)
+include_directories(Header)
+include_directories(SDK/Header)
+include_directories(SDK/Header/third-party)
 include_directories(WebsocketServer)
 
 add_definitions(-DUNICODE -DNDEBUG -DLITELOADER_EXPORTS -DWIN32_LEAN_AND_MEAN -D_CRT_SECURE_NO_WARNINGS -D_WINDOWS -D_USRDLL -D_AMD64_ -DNOMINMAX)
 
 file(GLOB SRC_FILES
-        ${PROJECT_SOURCE_DIR}/Shared/*.cpp
-        ${PROJECT_SOURCE_DIR}/Shared/*.hpp
-        ${PROJECT_SOURCE_DIR}/Shared/*.h
         ${PROJECT_SOURCE_DIR}/WebsocketServer/*.cpp
         ${PROJECT_SOURCE_DIR}/WebsocketServer/*.hpp
         ${PROJECT_SOURCE_DIR}/WebsocketServer/*.h
