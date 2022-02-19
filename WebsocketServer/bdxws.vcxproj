@@ -74,7 +74,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetName>LLWebsocketR</TargetName>
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)Shared\Header;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(SolutionDir)Header;$(SolutionDir)SDK\Header\third-party;$(SolutionDir)SDK\Header;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <TargetName>MCSWST</TargetName>
@@ -192,10 +192,13 @@
     <ResourceCompile Include="bdxws.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\Shared\Lib\bedrock_server_api.lib" />
-    <Library Include="..\Shared\Lib\bedrock_server_var.lib" />
-    <Library Include="..\Shared\Lib\LiteLoader.lib" />
-    <Library Include="..\Shared\Lib\SymDBHelper.lib" />
+    <Library Include="..\Lib\cryptlib.lib" />
+    <Library Include="..\Lib\openssl\libcrypto.lib" />
+    <Library Include="..\Lib\openssl\libssl.lib" />
+    <Library Include="..\SDK\Lib\bedrock_server_api.lib" />
+    <Library Include="..\SDK\Lib\bedrock_server_var.lib" />
+    <Library Include="..\SDK\Lib\LiteLoader.lib" />
+    <Library Include="..\SDK\Lib\SymDBHelper.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
