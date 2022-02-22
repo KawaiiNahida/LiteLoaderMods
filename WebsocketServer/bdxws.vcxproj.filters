@@ -31,22 +31,31 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\Shared\Lib\bedrock_server_api.lib">
-      <Filter>Lib</Filter>
-    </Library>
-    <Library Include="..\Shared\Lib\bedrock_server_var.lib">
-      <Filter>Lib</Filter>
-    </Library>
-    <Library Include="..\Shared\Lib\LiteLoader.lib">
-      <Filter>Lib</Filter>
-    </Library>
-    <Library Include="..\Shared\Lib\SymDBHelper.lib">
-      <Filter>Lib</Filter>
-    </Library>
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="bdxws.rc">
       <Filter>Res</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\SDK\Lib\bedrock_server_api.lib">
+      <Filter>Lib</Filter>
+    </Library>
+    <Library Include="..\SDK\Lib\bedrock_server_var.lib">
+      <Filter>Lib</Filter>
+    </Library>
+    <Library Include="..\SDK\Lib\LiteLoader.lib">
+      <Filter>Lib</Filter>
+    </Library>
+    <Library Include="..\SDK\Lib\SymDBHelper.lib">
+      <Filter>Lib</Filter>
+    </Library>
+    <Library Include="..\Lib\cryptlib.lib">
+      <Filter>Lib</Filter>
+    </Library>
+    <Library Include="..\Lib\openssl\libcrypto.lib">
+      <Filter>Lib</Filter>
+    </Library>
+    <Library Include="..\Lib\openssl\libssl.lib">
+      <Filter>Lib</Filter>
+    </Library>
   </ItemGroup>
 </Project>
