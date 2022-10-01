@@ -364,3 +364,5 @@ FodyWeavers.xsd
 
 **/bedrock_server_api.lib
 **/bedrock_server_var.lib
+
+build

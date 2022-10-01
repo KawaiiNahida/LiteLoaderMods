@@ -40,9 +40,9 @@ Logger logger("PktDumper");
 
 class EasyPkt : public Packet {
 public:
-	string_view view;
+	std::string_view view;
 	MinecraftPacketIds pktid;
-	EasyPkt(string_view sv,int pid)
+	EasyPkt(std::string_view sv,int pid)
 		: view(sv), pktid(MinecraftPacketIds(pid)){
 		incompressible = true;
 	}
