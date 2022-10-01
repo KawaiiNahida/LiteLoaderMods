@@ -1,0 +1,7 @@
+{
+	"wsaddr":"0.0.0.0:8800",
+	"endpoint":"/mc",
+	"encrypt":"aes_cbc_pck7padding",
+	"wspasswd":"passwd",
+	"enableLog": false
+}
