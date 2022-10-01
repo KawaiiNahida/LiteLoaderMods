@@ -366,3 +366,6 @@ FodyWeavers.xsd
 **/bedrock_server_var.lib
 
 build
+
+**/PacketHandler.dll
+**/LibWebsocket.dll
